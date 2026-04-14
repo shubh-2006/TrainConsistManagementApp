@@ -1,34 +1,20 @@
-import java.util.*;
+import java.util.regex.*;
 
 public class TrainConsistManagementApp {
-
-    static class Bogie {
-        String name;
-        int capacity;
-
-        Bogie(String name, int capacity) {
-            this.name = name;
-            this.capacity = capacity;
-        }
-    }
 
     public static void main(String[] args) {
 
         System.out.println("=======================================");
-        System.out.println(" UC10 - Total Seats in Train ");
+        System.out.println(" UC11 - Regex Validation ");
         System.out.println("=======================================\n");
 
-        List<Bogie> bogies = new ArrayList<>();
+        String trainId = "TRN-1234";
+        String cargo = "PET-AB";
 
-        bogies.add(new Bogie("Sleeper", 72));
-        bogies.add(new Bogie("AC Chair", 56));
-        bogies.add(new Bogie("First Class", 24));
-        bogies.add(new Bogie("Sleeper", 70));
+        boolean validTrain = Pattern.matches("TRN-\\d{4}", trainId);
+        boolean validCargo = Pattern.matches("PET-[A-Z]{2}", cargo);
 
-        int total = bogies.stream()
-                .map(b -> b.capacity)
-                .reduce(0, Integer::sum);
-
-        System.out.println("Total Seats: " + total);
+        System.out.println("Train ID Valid: " + validTrain);
+        System.out.println("Cargo Code Valid: " + validCargo);
     }
 }
